@@ -2,7 +2,7 @@ setup:
 	pip install -r requirements.txt
 
 run:
-	python src/train.py
+	python src/train.py && python src/train_prophet.py
 
 forecast:
 	jupyter notebook notebooks/02_modeling.ipynb
