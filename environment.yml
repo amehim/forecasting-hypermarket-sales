@@ -1,0 +1,16 @@
+name: holiday-forecast
+channels: [conda-forge, defaults]
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - scikit-learn
+  - statsmodels
+  - pip
+  - pip:
+      - prophet
+      - xgboost
+      - matplotlib
+      - plotly
+      - holidays
+      - ipykernel
