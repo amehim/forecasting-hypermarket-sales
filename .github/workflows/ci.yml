@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Prophet Smoke Test
+      run: |
+        python - << 'EOF'
+        from prophet import Prophet
+        import pandas as pd
+        import numpy as np
+        df = pd.DataFrame({
+            'ds': pd.date_range(start='2020-01-01', periods=20, freq='D'),
+            'y': np.random.randn(20)
+        })
+        m = Prophet()
+        m.fit(df)
+        m.predict(pd.DataFrame({'ds': pd.date_range('2020-01-21', periods=5)}))
+        print("Prophet model test succeeded.")
+        EOF

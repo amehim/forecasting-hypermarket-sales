@@ -1,0 +1,8 @@
+site_name: Hypermarket Holiday Sales Forecast
+nav:
+  - Home: index.md
+  - Methods: methods.md
+  - Results: results.md
+  - Contact: contact.md
+theme:
+  name: readthedocs
